@@ -2,8 +2,8 @@
 
 ALARM="/tmp/poweralarm"
 CURRENT_LEVEL="$(herodot battery get level)"
-LEVEL=10
-TIMEOUT=300
+LEVEL=80
+TIMEOUT=60
 
 alarm() {
     while true; do
@@ -22,6 +22,10 @@ alarm() {
 }
 
 toggle() {
+    if [ -f "$ALARM" ]; then
+        rm "$ALARM"
+    fi
+
     herodot performance set mode "$1"
     herodot idle set state "$2"
 }
@@ -37,9 +41,8 @@ moder() {
     done
 }
 
-moder &
 alarm &
-
+moder
 
 
 
