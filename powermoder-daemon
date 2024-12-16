@@ -2,7 +2,7 @@
 
 ALARM="/tmp/poweralarm"
 CURRENT_LEVEL="$(herodot battery get level)"
-LEVEL=80
+LEVEL=10
 TIMEOUT=60
 
 alarm() {
